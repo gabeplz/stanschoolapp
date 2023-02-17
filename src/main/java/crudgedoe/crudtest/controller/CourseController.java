@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api/course")
@@ -14,12 +15,12 @@ public class CourseController {
     CourseService courseService;
 
     @PostMapping("/new")
-    public Course newCourse(@RequestBody Course course){
+    public Course newCourse(@RequestBody Course course) {
         return courseService.newCourse(course);
     }
 
     @GetMapping("/all")
-    public Iterable<Course> getAllCourses(){
+    public Iterable<Course> getAllCourses() {
         return courseService.getAllCourses();
     }
 
@@ -34,17 +35,23 @@ public class CourseController {
     }
 
     @PutMapping("/{id}")
-    public Course updateCourseById(@PathVariable(value = "id") long id, @RequestBody Course course){
-        return courseService.updateCoursebyId(id,course);
+    public Course updateCourseById(@PathVariable(value = "id") long id, @RequestBody Course course) {
+        return courseService.updateCourseById(id, course);
     }
 
     @DeleteMapping("{id}")
-    public String deleteCoursebyId(@PathVariable(value = "id") long id){
+    public String deleteCourseById(@PathVariable(value = "id") long id) {
         return courseService.deleteCourseById(id);
     }
 
     @DeleteMapping("/all")
-    public void deleteAllCourses(){
+    public void deleteAllCourses() {
         courseService.deleteAllCourses();
     }
+
+    @PutMapping("/add/{courseId}/{leerlingId}")
+    public void addStudentToCourse(@PathVariable(value = "courseId") long courseId, @PathVariable(value = "leerlingId") long leerlingId) {
+        courseService.addStudentToCourse(courseId, leerlingId);
+    }
+
 }

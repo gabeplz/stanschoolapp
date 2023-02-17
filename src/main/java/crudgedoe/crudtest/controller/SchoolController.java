@@ -1,7 +1,6 @@
 package crudgedoe.crudtest.controller;
 
 
-import crudgedoe.crudtest.models.Leerling;
 import crudgedoe.crudtest.models.School;
 import crudgedoe.crudtest.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,20 +10,20 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin
-@RequestMapping ("/api/school")
+@RequestMapping("/api/school")
 public class SchoolController {
 
     @Autowired
     SchoolService schoolService;
 
     @PostMapping("/new")
-    public School newSchool(@RequestBody School school){
+    public School newSchool(@RequestBody School school) {
         return schoolService.newSchool(school);
     }
 
     @GetMapping("/all")
-    public Iterable<School> getAllScholen(){
-        return schoolService.getAllScholen();
+    public Iterable<School> getAllSchools() {
+        return schoolService.getAllSchools();
     }
 
     @GetMapping("/by_id/{id}")
@@ -37,20 +36,18 @@ public class SchoolController {
         return schoolService.getSchoolByName(name);
     }
 
-
-
     @PutMapping("/{id}")
-    public School updateSchoolById(@PathVariable(value = "id") long id, @RequestBody School school){
-        return schoolService.updateSchoolbyId(id,school);
+    public School updateSchoolById(@PathVariable(value = "id") long id, @RequestBody School school) {
+        return schoolService.updateSchoolById(id, school);
     }
 
     @DeleteMapping("{id}")
-    public String deleteSchoolbyId(@PathVariable(value = "id") long id){
+    public String deleteSchoolById(@PathVariable(value = "id") long id) {
         return schoolService.deleteSchoolById(id);
     }
 
     @DeleteMapping("/all")
-    public void deleteAllScholen(){
-        schoolService.deleteAllScholen();
+    public void deleteAllSchools() {
+        schoolService.deleteAllSchools();
     }
 }

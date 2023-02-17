@@ -1,24 +1,25 @@
 package crudgedoe.crudtest.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="ContactPersoon")
-public class ContactPersoon {
+@Table(name = "ContactPerson")
+public class ContactPerson {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String phoneNumber;
 
+    @OneToOne(mappedBy = "contactPerson")
+    @JsonIgnore
+    private Student student;
 
+    public ContactPerson() {
+    }
 
-    //private int id;
-    @OneToOne(mappedBy = "contactPersoon")
-    private Leerling leerling;
-
-    public ContactPersoon(){}
-    public ContactPersoon(String name, String phoneNumber) {
+    public ContactPerson(String name, String phoneNumber) {
         this.name = name;
         this.phoneNumber = phoneNumber;
     }
@@ -40,6 +41,14 @@ public class ContactPersoon {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        phoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

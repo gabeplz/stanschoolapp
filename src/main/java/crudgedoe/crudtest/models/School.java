@@ -1,11 +1,13 @@
 package crudgedoe.crudtest.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "School")
 public class School {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,21 +15,21 @@ public class School {
     private String name;
     private Integer amountOfStudents;
     private String city;
-    @JsonManagedReference
+
+    @JsonIgnore
     @OneToMany
-    private List<Leerling> leerling;
+    private List<Student> student = new ArrayList<>();
 
+    public School() {
+    }
 
-    public School(String name, Integer amountOfStudents, String city){
+    public School(String name, Integer amountOfStudents, String city) {
         this.name = name;
         this.amountOfStudents = amountOfStudents;
         this.city = city;
     }
 
-    public School(){}
-
-// Table [cat] contains physical column name [school_id] referred to by multiple logical column names: [school_id], [schoolId]
-    public Long getId(){
+    public Long getId() {
         return id;
     }
 
@@ -53,5 +55,13 @@ public class School {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public List<Student> getStudent() {
+        return student;
+    }
+
+    public void setStudent(List<Student> student) {
+        this.student = student;
     }
 }

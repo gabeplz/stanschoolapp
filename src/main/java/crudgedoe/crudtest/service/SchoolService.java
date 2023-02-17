@@ -1,6 +1,5 @@
 package crudgedoe.crudtest.service;
 
-import crudgedoe.crudtest.models.Leerling;
 import crudgedoe.crudtest.models.School;
 import crudgedoe.crudtest.repository.SchoolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import java.util.Optional;
 
 @Service
 @Transactional
-
 public class SchoolService {
 
     @Autowired
@@ -21,8 +19,8 @@ public class SchoolService {
         return schoolRepository.save(school);
     }
 
-    public Iterable<School> getAllScholen() {
-        return  schoolRepository.findAll();
+    public Iterable<School> getAllSchools() {
+        return schoolRepository.findAll();
     }
 
     public Optional<School> getSchoolById(long id) {
@@ -32,30 +30,30 @@ public class SchoolService {
     public Iterable<School> getSchoolByName(String name) {
         return schoolRepository.getSchoolByName(name);
     }
-    
+
     public String deleteSchoolById(long id) {
         if (schoolRepository.existsById(id)) {
             schoolRepository.deleteById(id);
             return "goed gedaan";
         }
-        return "die bestaat niet";
+        return "no school with matching id found";
     }
 
-    public void deleteAllScholen(){
+    public void deleteAllSchools() {
         schoolRepository.deleteAll();
     }
 
-    public School updateSchoolbyId(long id, School school) {
-        if(!schoolRepository.existsById(id)){
+    public School updateSchoolById(long id, School school) {
+        if (!schoolRepository.existsById(id)) {
             return null;
         }
         School oldSchool = schoolRepository.findById(id).get();
 
-        if (school.getName() != null){
+        if (school.getName() != null) {
             oldSchool.setName(school.getName());
         }
 
-        if (school.getCity() != null){
+        if (school.getCity() != null) {
             oldSchool.setCity(school.getCity());
         }
 
@@ -65,4 +63,3 @@ public class SchoolService {
         return schoolRepository.save(oldSchool);
     }
 }
-// TODO: 15/02/2023 vervang alle getters en setters in schoolmodel met regel @Data om te kijken of het werkt
