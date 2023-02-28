@@ -17,6 +17,6 @@ public class StudentGetDto {
     private Integer grade;
     private School school;
     private ContactPerson contactPerson;
-    private List<Course> courses = new ArrayList<>();
+    private List<Course> courses;
 }
 
