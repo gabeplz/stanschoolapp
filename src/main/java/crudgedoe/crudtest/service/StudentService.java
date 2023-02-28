@@ -1,5 +1,8 @@
 package crudgedoe.crudtest.service;
 
+import crudgedoe.crudtest.dto.StudentGetDto;
+import crudgedoe.crudtest.dto.StudentPostDto;
+import crudgedoe.crudtest.mapper.StudentMapper;
 import crudgedoe.crudtest.models.Student;
 import crudgedoe.crudtest.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +18,29 @@ public class StudentService {
     @Autowired
     StudentRepository studentRepository;
 
-    public Student newStudent(Student student) {
-        return studentRepository.save(student);
+    @Autowired
+    StudentMapper studentMapper;
+//    public Student newStudent(Student student) {
+//        return studentRepository.save(student);
+//    }
+    public void newStudent(StudentPostDto student){
+        Student newStudent = studentMapper.toEntity(student);
+        studentRepository.save(newStudent);
     }
 
     public Iterable<Student> getAllLeerlingen() {
         return  studentRepository.findAll();
     }
 
-    public Optional<Student> getLeerlingById(long id) {
-        return studentRepository.findById(id);
+//    public Optional<Student> getLeerlingById(long id) {
+//        return studentRepository.findById(id);
+//    }
+
+    public StudentGetDto getStudentById(Long id) {
+        Student student = studentRepository.findById(id).get();
+        return studentMapper.toDto(student);
     }
-    
+
     public Student updateStudentById(long id, Student student) {
         if(!studentRepository.existsById(id)){
             return null;

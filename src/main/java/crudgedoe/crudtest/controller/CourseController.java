@@ -49,9 +49,9 @@ public class CourseController {
         courseService.deleteAllCourses();
     }
 
-    @PutMapping("/add/{courseId}/{studentId}")
-    public void addStudentToCourse(@PathVariable(value = "courseId") long courseId, @PathVariable(value = "studentId") long studentId) {
-        courseService.addStudentToCourse(courseId, studentId);
-    }
+//    @PutMapping("/add/{courseId}/{studentId}")
+//    public void addStudentToCourse(@PathVariable(value = "courseId") long courseId, @PathVariable(value = "studentId") long studentId) {
+//        courseService.addStudentToCourse(courseId, studentId);
+//    }
 
 }

@@ -30,6 +30,8 @@ public class ContactPersonController {
         return contactPersonService.getContactPersonById(id);
     }
 
+
+
     @GetMapping("/by_name/{name}")
     public Iterable<ContactPerson> getContactPersonByName(@PathVariable(value = "name") String name) {
         return contactPersonService.getContactPersonByName(name);
@@ -50,10 +52,10 @@ public class ContactPersonController {
         contactPersonService.deleteAllCourses();
     }
 
-    @PutMapping("/add/{contactId}/{studentId}")
-    public String addStudentToCourse(@PathVariable(value = "contactId") long contactId, @PathVariable(value = "studentId") long studentId) {
-        contactPersonService.addStudentToContactPerson(contactId, studentId);
-        return "hello";
-    }
+//    @PutMapping("/add/{contactId}/{studentId}")
+//    public String addStudentToCourse(@PathVariable(value = "contactId") long contactId, @PathVariable(value = "studentId") long studentId) {
+//        contactPersonService.addStudentToContactPerson(contactId, studentId);
+//        return "hello";
+//    }
 
 }

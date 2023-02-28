@@ -66,13 +66,13 @@ public class CourseService {
         courseRepository.deleteAll();
     }
 
-    public void addStudentToCourse(long courseid, long leerlingid) {
-        Course tempCourse = courseRepository.findById(courseid).get();
-        Student tempStudent = studentService.getLeerlingById(leerlingid).get();
-
-        tempCourse.getStudent().add(tempStudent);
-        tempStudent.getCourses().add(tempCourse);
-
-        courseRepository.save(tempCourse);
-    }
+//    public void addStudentToCourse(long courseid, long leerlingid) {
+//        Course tempCourse = courseRepository.findById(courseid).get();
+//        Student tempStudent = studentService.getLeerlingById(leerlingid).get();
+//
+//        tempCourse.getStudent().add(tempStudent);
+//        tempStudent.getCourses().add(tempCourse);
+//
+//        courseRepository.save(tempCourse);
+//    }
 }

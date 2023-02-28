@@ -68,13 +68,13 @@ public class ContactPersonService {
         contactPersonRepository.deleteAll();
     }
 
-    public void addStudentToContactPerson(long contactPersonId, long studentId) {
-        ContactPerson tempContact = contactPersonRepository.findById(contactPersonId).get();
-        Student tempStudent = studentService.getLeerlingById(studentId).get();
-
-        tempContact.setStudent(tempStudent);
-        tempStudent.setContactPerson(tempContact);
-        contactPersonRepository.save(tempContact);
-    }
+//    public void addStudentToContactPerson(long contactPersonId, long studentId) {
+//        ContactPerson tempContact = contactPersonRepository.findById(contactPersonId).get();
+//        Student tempStudent = studentService.getLeerlingById(studentId).get();
+//
+//        tempContact.setStudent(tempStudent);
+//        tempStudent.setContactPerson(tempContact);
+//        contactPersonRepository.save(tempContact);
+//    }
 
 }
