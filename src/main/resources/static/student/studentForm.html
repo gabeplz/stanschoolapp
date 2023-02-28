@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<h1>Voeg een student toe</h1>
+
+
+<label for="name">Name</label>
+<input type="text" id="name">
+<br>
+<label for="grade">grade</label>
+<input type="text" id="grade">
+<br>
+<button onclick="newStudent()">new student knop</button>
+<input type="reset" value="Opnieuw">
+
+<button onclick="getAllStudents()">mijn basisbeurs haalt alle studenten op</button>
+
+<table>
+    <tr>
+        <th>Naam</th>
+        <th>Soort</th>
+    </tr>
+    <tbody id="table"></tbody>
+</table>
+
+<h1>koppel studenten aan contactpersonen</h1>
+<label for="studentId">studentId</label>
+<input type="text" id="studentId">
+<br>
+<label for="contactPersonId">contactid</label>
+<input type="text" id="contactPersonId">
+<br>
+<button onclick="mergeContactPersoonAndStudent()">kopper student en contactpersoon</button>
+
+<h1>koppel studenten aan Courses</h1>
+<label for="studentId2">studentId</label>
+<input type="text" id="studentId2">
+<br>
+<label for="courseId">course id</label>
+<input type="text" id="courseId">
+<br>
+<button onclick="mergeCourseAndStudent()">kopper student en contactpersoon</button>
+
+<a href="/../index.html">Terug</a>
+
+<script src="form.js"></script>
+
+</body>
+</html>

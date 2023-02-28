@@ -1,6 +1,8 @@
 package crudgedoe.crudtest.service;
 
 import crudgedoe.crudtest.models.ContactPerson;
+import crudgedoe.crudtest.models.Course;
+import crudgedoe.crudtest.models.Student;
 import crudgedoe.crudtest.repository.ContactPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class ContactPersonService {
 
     @Autowired
     ContactPersonRepository contactPersonRepository;
+
+    @Autowired
+    StudentService studentService;
 
     public ContactPerson newContactPerson(ContactPerson contactPerson) {
         return contactPersonRepository.save(contactPerson);
@@ -62,4 +67,14 @@ public class ContactPersonService {
     public void deleteAllCourses() {
         contactPersonRepository.deleteAll();
     }
+
+    public void addStudentToContactPerson(long contactPersonId, long studentId) {
+        ContactPerson tempContact = contactPersonRepository.findById(contactPersonId).get();
+        Student tempStudent = studentService.getLeerlingById(studentId).get();
+
+        tempContact.setStudent(tempStudent);
+        tempStudent.setContactPerson(tempContact);
+        contactPersonRepository.save(tempContact);
+    }
+
 }

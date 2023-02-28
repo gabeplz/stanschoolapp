@@ -10,10 +10,8 @@
 <body>
 <p>contactpersoon</p>
 
-<h1>Voeg een vogel toe</h1>
+<h1>Voeg een Contact Person toe</h1>
 
-private String name;
-private String phonenumber;
 
 <label for="name">Naam</label>
 <input type="text" id="name">
@@ -21,11 +19,22 @@ private String phonenumber;
 <label for="phoneNumber">Soort</label>
 <input type="text" id="phoneNumber">
 <br>
-<button onclick="newContactPersoon()">new contact</button>
+<button onclick="newContactPerson()">new contact</button>
 <input type="reset" value="Opnieuw">
 
+<button onclick="getAllContactPersons()">mijn basisbeurs haalt alle studenten op</button>
+
+<table>
+    <tr>
+        <th>name</th>
+        <th>phoneNumber</th>
+    </tr>
+    <tbody id="table"></tbody>
+</table>
 
 <a href="/../index.html">Terug</a>
+
+<script src="ContactPersonForm.js"></script>
 
 </body>
 </html>
