@@ -1,5 +1,7 @@
 package crudgedoe.crudtest.controller;
 
+import crudgedoe.crudtest.dto.ContactPersonGetDto;
+import crudgedoe.crudtest.dto.ContactPersonPostDto;
 import crudgedoe.crudtest.models.ContactPerson;
 import crudgedoe.crudtest.service.ContactPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,14 @@ public class ContactPersonController {
     @Autowired
     ContactPersonService contactPersonService;
 
+//    @PostMapping("/new")
+//    public ContactPerson newContactPerson(@RequestBody ContactPerson contactPerson) {
+//        return contactPersonService.newContactPerson(contactPerson);
+//    }
+
     @PostMapping("/new")
-    public ContactPerson newContactPerson(@RequestBody ContactPerson contactPerson) {
-        return contactPersonService.newContactPerson(contactPerson);
+    public void newContactPerson(@RequestBody ContactPersonPostDto contactPerson) {
+         contactPersonService.newContactPerson(contactPerson);
     }
 
     @GetMapping("/all")
@@ -25,12 +32,13 @@ public class ContactPersonController {
         return contactPersonService.getAllContactPersons();
     }
 
+//    @GetMapping("/by_id/{id}")
+//    public Optional<ContactPerson> getPersonById(@PathVariable(value = "id") long id) {
+//        return contactPersonService.getContactPersonById(id);
+//    }
+
     @GetMapping("/by_id/{id}")
-    public Optional<ContactPerson> getPersonById(@PathVariable(value = "id") long id) {
-        return contactPersonService.getContactPersonById(id);
-    }
-
-
+    public ContactPersonGetDto getContactPersonById(@PathVariable(value = "id") Long id) {return contactPersonService.getContactPersonById(id);}
 
     @GetMapping("/by_name/{name}")
     public Iterable<ContactPerson> getContactPersonByName(@PathVariable(value = "name") String name) {

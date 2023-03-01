@@ -13,6 +13,7 @@ import java.util.List;
 @Setter
 
 public class StudentGetDto {
+    private Long id;
     private String name;
     private Integer grade;
     private School school;

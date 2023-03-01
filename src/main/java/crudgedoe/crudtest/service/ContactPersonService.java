@@ -1,5 +1,8 @@
 package crudgedoe.crudtest.service;
 
+import crudgedoe.crudtest.dto.ContactPersonGetDto;
+import crudgedoe.crudtest.dto.ContactPersonPostDto;
+import crudgedoe.crudtest.mapper.ContactPersonMapper;
 import crudgedoe.crudtest.models.ContactPerson;
 import crudgedoe.crudtest.models.Course;
 import crudgedoe.crudtest.models.Student;
@@ -20,17 +23,23 @@ public class ContactPersonService {
     @Autowired
     StudentService studentService;
 
-    public ContactPerson newContactPerson(ContactPerson contactPerson) {
-        return contactPersonRepository.save(contactPerson);
+    @Autowired
+    ContactPersonMapper contactPersonMapper;
+    public void newContactPerson(ContactPersonPostDto contactPerson) {
+         ContactPerson newContactPerson = contactPersonMapper.toEntity(contactPerson);
+         contactPersonRepository.save(newContactPerson);
     }
+
+    public ContactPersonGetDto getContactPersonById(Long id) {
+       ContactPerson contactPerson = contactPersonRepository.findById(id).get();
+       return contactPersonMapper.toDto(contactPerson);
+    }
+
 
     public Iterable<ContactPerson> getAllContactPersons() {
         return contactPersonRepository.findAll();
     }
 
-    public Optional<ContactPerson> getContactPersonById(long id) {
-        return contactPersonRepository.findById(id);
-    }
 
     public Iterable<ContactPerson> getContactPersonByName(String name) {
         return contactPersonRepository.getContactPersonByName(name);
