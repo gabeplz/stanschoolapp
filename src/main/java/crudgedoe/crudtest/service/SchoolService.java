@@ -1,7 +1,13 @@
 package crudgedoe.crudtest.service;
 
+import crudgedoe.crudtest.dto.SchoolGetDto;
+import crudgedoe.crudtest.dto.SchoolPostDto;
+import crudgedoe.crudtest.mapper.SchoolMapper;
+import crudgedoe.crudtest.models.ContactPerson;
 import crudgedoe.crudtest.models.School;
+import crudgedoe.crudtest.models.Student;
 import crudgedoe.crudtest.repository.SchoolRepository;
+import crudgedoe.crudtest.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,16 +21,32 @@ public class SchoolService {
     @Autowired
     SchoolRepository schoolRepository;
 
-    public School newSchool(School school) {
-        return schoolRepository.save(school);
+    @Autowired
+    SchoolMapper schoolMapper;
+
+    @Autowired
+    StudentRepository studentRepository;
+//    public School newSchool(School school) {
+//        return schoolRepository.save(school);
+//    }
+//
+//    public Optional<School> getSchoolById(long id) {
+//        return schoolRepository.findById(id);
+//    }
+
+    public void newSchool(SchoolPostDto school){
+        School newSchool = schoolMapper.toEntity(school);
+        schoolRepository.save(newSchool);
+    }
+
+    public SchoolGetDto getSchoolById(Long id){
+        School school = schoolRepository.findById(id).get();
+        return schoolMapper.toDto(school);
+
     }
 
     public Iterable<School> getAllSchools() {
         return schoolRepository.findAll();
-    }
-
-    public Optional<School> getSchoolById(long id) {
-        return schoolRepository.findById(id);
     }
 
     public Iterable<School> getSchoolByName(String name) {
@@ -62,4 +84,14 @@ public class SchoolService {
 
         return schoolRepository.save(oldSchool);
     }
+
+    public void addStudentToSchool(Long schoolId, Long studentId) {
+        School tempSchool = schoolRepository.findById(schoolId).get();
+        Student tempStudent = studentRepository.findById(studentId).get();
+
+        tempSchool.getStudent().add(tempStudent);
+        tempStudent.setSchool(tempSchool);
+        schoolRepository.save(tempSchool);
+    }
+
 }

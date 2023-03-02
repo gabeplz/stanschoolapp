@@ -1,5 +1,7 @@
 package crudgedoe.crudtest.controller;
 
+import crudgedoe.crudtest.dto.CourseGetDto;
+import crudgedoe.crudtest.dto.CoursePostDto;
 import crudgedoe.crudtest.models.Course;
 import crudgedoe.crudtest.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,14 @@ public class CourseController {
     @Autowired
     CourseService courseService;
 
+//    @PostMapping("/new")
+//    public Course newCourse(@RequestBody Course course) {
+//        return courseService.newCourse(course);
+//    }
+
     @PostMapping("/new")
-    public Course newCourse(@RequestBody Course course) {
-        return courseService.newCourse(course);
-    }
+    public void newCourse(@RequestBody CoursePostDto course){
+        courseService.newCourse(course);    }
 
     @GetMapping("/all")
     public Iterable<Course> getAllCourses() {
@@ -25,9 +31,13 @@ public class CourseController {
     }
 
     @GetMapping("/by_id/{id}")
-    public Optional<Course> getCourseById(@PathVariable(value = "id") long id) {
+    public CourseGetDto getCourseById(@PathVariable(value = "id") Long id) {
         return courseService.getCourseById(id);
     }
+//    @GetMapping("/by_id/{id}")
+//    public Optional<Course> getCourseById(@PathVariable(value = "id") long id) {
+//        return courseService.getCourseById(id);
+//    }
 
     @GetMapping("/by_name/{name}")
     public Iterable<Course> getCourseByName(@PathVariable(value = "name") String name) {
@@ -49,9 +59,9 @@ public class CourseController {
         courseService.deleteAllCourses();
     }
 
-//    @PutMapping("/add/{courseId}/{studentId}")
-//    public void addStudentToCourse(@PathVariable(value = "courseId") long courseId, @PathVariable(value = "studentId") long studentId) {
-//        courseService.addStudentToCourse(courseId, studentId);
-//    }
+    @PutMapping("/add/{courseId}/{studentId}")
+    public void addStudentToCourse(@PathVariable(value = "courseId") long courseId, @PathVariable(value = "studentId") long studentId) {
+        courseService.addStudentToCourse(courseId, studentId);
+    }
 
 }

@@ -60,10 +60,10 @@ public class ContactPersonController {
         contactPersonService.deleteAllCourses();
     }
 
-//    @PutMapping("/add/{contactId}/{studentId}")
-//    public String addStudentToCourse(@PathVariable(value = "contactId") long contactId, @PathVariable(value = "studentId") long studentId) {
-//        contactPersonService.addStudentToContactPerson(contactId, studentId);
-//        return "hello";
-//    }
+    @PutMapping("/add/{contactId}/{studentId}")
+    public String addStudentToContactPerson(@PathVariable(value = "contactId") long contactId, @PathVariable(value = "studentId") long studentId) {
+        contactPersonService.addStudentToContactPerson(contactId, studentId);
+        return "hello";
+    }
 
 }

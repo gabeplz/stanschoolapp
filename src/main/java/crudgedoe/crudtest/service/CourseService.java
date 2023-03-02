@@ -1,8 +1,12 @@
 package crudgedoe.crudtest.service;
 
+import crudgedoe.crudtest.dto.CourseGetDto;
+import crudgedoe.crudtest.dto.CoursePostDto;
+import crudgedoe.crudtest.mapper.CourseMapper;
 import crudgedoe.crudtest.models.Course;
 import crudgedoe.crudtest.models.Student;
 import crudgedoe.crudtest.repository.CourseRepository;
+import crudgedoe.crudtest.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,19 +21,35 @@ public class CourseService {
     CourseRepository courseRepository;
 
     @Autowired
+    StudentRepository studentRepository;
+
+    @Autowired
     StudentService studentService;
 
-    public Course newCourse(Course course) {
-        return courseRepository.save(course);
+    @Autowired
+    CourseMapper courseMapper;
+
+//    public Course newCourse(Course course) {
+//        return courseRepository.save(course);
+//    }
+
+    public void newCourse(CoursePostDto course){
+        Course newCourse = courseMapper.toEntity(course);
+        courseRepository.save(newCourse);
+    }
+
+//    public Optional<Course> getCourseById(long id) {return courseRepository.findById(id);}
+
+    public CourseGetDto getCourseById(Long id){
+        Course course = courseRepository.findById(id).get();
+        return courseMapper.toDto(course);
     }
 
     public Iterable<Course> getAllCourses() {
         return courseRepository.findAll();
     }
 
-    public Optional<Course> getCourseById(long id) {
-        return courseRepository.findById(id);
-    }
+
 
     public Iterable<Course> getCourseByName(String name) {
         return courseRepository.getCourseByName(name);
@@ -75,4 +95,12 @@ public class CourseService {
 //
 //        courseRepository.save(tempCourse);
 //    }
+
+    public void addStudentToCourse(Long StudentId,Long courseId){
+        Course tempCourse = courseRepository.findById(courseId).get();
+        Student tempStudent = studentRepository.findById(courseId).get();
+        tempCourse.getStudent().add(tempStudent);
+        tempStudent.getCourses().add(tempCourse);
+        courseRepository.save(tempCourse);
+    }
 }
