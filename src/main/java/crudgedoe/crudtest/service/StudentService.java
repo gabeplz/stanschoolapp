@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,8 +30,11 @@ public class StudentService {
         studentRepository.save(newStudent);
     }
 
-    public Iterable<Student> getAllLeerlingen() {
-        return  studentRepository.findAll();
+    public Iterable<StudentGetDto> getAllLeerlingen() {
+        Iterable<Student> students = studentRepository.findAll();
+        List<StudentGetDto> studentGetDtoList = new ArrayList<StudentGetDto>();
+        students.forEach(student -> { studentGetDtoList.add(studentMapper.toDto(student));});
+        return  studentGetDtoList;
     }
 
 //    public Optional<Student> getLeerlingById(long id) {
@@ -73,7 +78,16 @@ public class StudentService {
         studentRepository.deleteAll();
     }
 
-    public Iterable<Student> getStudentByName(String name) {
-        return studentRepository.getStudentByName(name);
+    //        names.forEach(name -> {
+//            System.out.println(name);
+//        });
+
+    public Iterable<StudentGetDto> getStudentByName(String name) {
+        Iterable<Student> students = studentRepository.getStudentByName(name);
+        List<StudentGetDto> tempList = new ArrayList<StudentGetDto>();
+        students.forEach(student -> { tempList.add(studentMapper.toDto(student));});
+        //Iterable<StudentGetDto> studentGetDtos = tempList;
+
+        return tempList;
     }
 }

@@ -26,7 +26,7 @@ public class CourseController {
         courseService.newCourse(course);    }
 
     @GetMapping("/all")
-    public Iterable<Course> getAllCourses() {
+    public Iterable<CourseGetDto> getAllCourses() {
         return courseService.getAllCourses();
     }
 

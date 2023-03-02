@@ -2,6 +2,7 @@ package crudgedoe.crudtest.service;
 
 import crudgedoe.crudtest.dto.SchoolGetDto;
 import crudgedoe.crudtest.dto.SchoolPostDto;
+import crudgedoe.crudtest.dto.StudentGetDto;
 import crudgedoe.crudtest.mapper.SchoolMapper;
 import crudgedoe.crudtest.models.ContactPerson;
 import crudgedoe.crudtest.models.School;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,9 +48,16 @@ public class SchoolService {
 
     }
 
-    public Iterable<School> getAllSchools() {
-        return schoolRepository.findAll();
+//    public Iterable<School> getAllSchools() {
+//        return schoolRepository.findAll();
+//    }
+    public Iterable<SchoolGetDto> getAllSchools() {
+        Iterable<School> schools = schoolRepository.findAll();
+        List<SchoolGetDto> SchoolGetDtoList = new ArrayList<SchoolGetDto>();
+        schools.forEach(school -> { SchoolGetDtoList.add(schoolMapper.toDto(school));});
+        return  SchoolGetDtoList;
     }
+
 
     public Iterable<School> getSchoolByName(String name) {
         return schoolRepository.getSchoolByName(name);

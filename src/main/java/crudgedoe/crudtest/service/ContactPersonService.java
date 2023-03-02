@@ -2,6 +2,7 @@ package crudgedoe.crudtest.service;
 
 import crudgedoe.crudtest.dto.ContactPersonGetDto;
 import crudgedoe.crudtest.dto.ContactPersonPostDto;
+import crudgedoe.crudtest.dto.StudentGetDto;
 import crudgedoe.crudtest.mapper.ContactPersonMapper;
 import crudgedoe.crudtest.models.ContactPerson;
 import crudgedoe.crudtest.models.Course;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,9 +43,16 @@ public class ContactPersonService {
     }
 
 
-    public Iterable<ContactPerson> getAllContactPersons() {
-        return contactPersonRepository.findAll();
+    public Iterable<ContactPersonGetDto> getAllContactPersons() {
+        Iterable<ContactPerson> contactPersons = contactPersonRepository.findAll();
+        List<ContactPersonGetDto> contactPersonGetDtoList = new ArrayList<ContactPersonGetDto>();
+        contactPersons.forEach(contactPerson -> contactPersonGetDtoList.add(contactPersonMapper.toDto(contactPerson)));
+        return contactPersonGetDtoList;
     }
+
+
+
+
 
 
     public Iterable<ContactPerson> getContactPersonByName(String name) {

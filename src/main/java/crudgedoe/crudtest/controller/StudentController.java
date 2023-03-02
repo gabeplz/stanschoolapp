@@ -22,8 +22,13 @@ public class StudentController {
 //        return studentService.newStudent(student);
 //    }
 
+//    @GetMapping("/all")
+//    public Iterable<Student> getAllStudents() {
+//        return studentService.getAllLeerlingen();
+//    }
+
     @GetMapping("/all")
-    public Iterable<Student> getAllStudents() {
+    public Iterable<StudentGetDto> getAllStudents() {
         return studentService.getAllLeerlingen();
     }
 
@@ -39,10 +44,13 @@ public class StudentController {
         return studentService.getStudentById(id);
     }
 
-
+//    @GetMapping("/by_name/{name}")
+//    public Iterable<Student> getStudentByName(@PathVariable(value = "name") String name) {
+//        return studentService.getStudentByName(name);
+//    }
 
     @GetMapping("/by_name/{name}")
-    public Iterable<Student> getStudentByName(@PathVariable(value = "name") String name) {
+    public Iterable<StudentGetDto> getStudentByName(@PathVariable(value="name")String name){
         return studentService.getStudentByName(name);
     }
 

@@ -27,10 +27,14 @@ public class ContactPersonController {
          contactPersonService.newContactPerson(contactPerson);
     }
 
+//    @GetMapping("/all")
+//    public Iterable<ContactPerson> getAllContactPersons() {
+//        return contactPersonService.getAllContactPersons();
+//    }
     @GetMapping("/all")
-    public Iterable<ContactPerson> getAllContactPersons() {
-        return contactPersonService.getAllContactPersons();
-    }
+    public Iterable<ContactPersonGetDto> getAllContactPersons() {
+    return contactPersonService.getAllContactPersons();
+}
 
 //    @GetMapping("/by_id/{id}")
 //    public Optional<ContactPerson> getPersonById(@PathVariable(value = "id") long id) {

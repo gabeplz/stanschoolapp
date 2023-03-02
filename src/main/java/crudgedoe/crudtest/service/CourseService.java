@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,8 +47,11 @@ public class CourseService {
         return courseMapper.toDto(course);
     }
 
-    public Iterable<Course> getAllCourses() {
-        return courseRepository.findAll();
+    public Iterable<CourseGetDto> getAllCourses() {
+        Iterable<Course> courses = courseRepository.findAll();
+        List<CourseGetDto> courseGetDtoList = new ArrayList<CourseGetDto>();
+        courses.forEach(course -> courseGetDtoList.add(courseMapper.toDto(course)));
+        return courseGetDtoList;
     }
 
 

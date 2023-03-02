@@ -36,11 +36,14 @@ public class SchoolController {
     @GetMapping("/by_id/{id}")
     public SchoolGetDto getSchoolById(@PathVariable(value ="id") Long id){return schoolService.getSchoolById(id);}
 
+//    @GetMapping("/all")
+//    public Iterable<School> getAllSchools() {
+//        return schoolService.getAllSchools();
+//    }
     @GetMapping("/all")
-    public Iterable<School> getAllSchools() {
-        return schoolService.getAllSchools();
-    }
-
+    public Iterable<SchoolGetDto> getAllSchools() {
+    return schoolService.getAllSchools();
+}
 
 
     @GetMapping("/by_name/{name}")
