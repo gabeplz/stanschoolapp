@@ -12,21 +12,26 @@
 <h1>Voeg een student toe</h1>
 
 
-<label for="name">Name</label>
+<label for="name">Naam</label>
 <input type="text" id="name">
 <br>
-<label for="grade">grade</label>
+<label for="grade">studiepunten</label>
 <input type="text" id="grade">
 <br>
-<button onclick="newStudent()">new student knop</button>
+
+<button onclick="newStudent()">nieuwe student knop</button>
 <input type="reset" value="Opnieuw">
 
 <button onclick="getAllStudents()">mijn basisbeurs haalt alle studenten op</button>
 
 <table>
     <tr>
+        <th>studId</th>
         <th>Naam</th>
-        <th>Soort</th>
+        <th>klas</th>
+        <th>school</th>
+        <th>contactpersoonId<th>
+        <th>courseId</th>
     </tr>
     <tbody id="table"></tbody>
 </table>
@@ -47,17 +52,17 @@
 <label for="courseId">course id</label>
 <input type="text" id="courseId">
 <br>
-<button onclick="mergeCourseAndStudent()">koppel student en contactpersoon</button>
+<button onclick="mergeCourseAndStudent()">koppel student en course</button>
 
 
 <h1>koppel studenten aan schoolen</h1>
 <label for="studentId3">studentId</label>
 <input type="text" id="studentId3">
 <br>
-<label for="schoolId">course id</label>
+<label for="schoolId">school id</label>
 <input type="text" id="schoolId">
 <br>
-<button onclick="mergeCourseAndSchool()">koppel student en contactpersoon</button>
+<button onclick="mergeSchoolAndStudent()">koppel student en school</button>
 
 
 <a href="/../index.html">Terug</a>

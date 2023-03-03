@@ -9,38 +9,36 @@
 </head>
 <body>
 
-<h1>Voeg een course toe</h1>
+<h1>Voeg een school toe</h1>
 
-
+<label for="amountOfStudents">aantal studenten</label>
+<input type="text" id="amountOfStudents">
+<br>
 <label for="name">name</label>
 <input type="text" id="name">
 <br>
-<label for="credits">studiepunten</label>
-<input type="text" id="credits">
+<label for="city">stad</label>
+<input type="text" id="city">
 <br>
-<button onclick="newCourse()">new course</button>
+
+<button onclick="newSchool()">nieuwe school</button>
 <input type="reset" value="Opnieuw">
 
-<button onclick="getAllCourses()">mijn basisbeurs haalt alle studenten op</button>
+<button onclick="getAllSchools()">mijn basisbeurs haalt alle studenten op</button>
 
 <table>
     <tr>
         <th>id</th>
         <th>name</th>
-        <th>credits</th>
+        <th>aantal studenten</th>
+        <th>stad</th>
     </tr>
-    <tbody id="courseTable"></tbody>
+    <tbody id="schoolTable"></tbody>
 </table>
 
 <a href="/../index.html">Terug</a>
 
-
-
-
-
-
-
-<script src="CourseForm.js"></script>
+<script src="SchoolForm.js"></script>
 
 </body>
 </html>

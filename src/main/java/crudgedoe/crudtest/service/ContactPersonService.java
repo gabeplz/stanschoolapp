@@ -31,6 +31,7 @@ public class ContactPersonService {
     StudentRepository studentRepository;
 
     @Autowired
+
     ContactPersonMapper contactPersonMapper;
     public void newContactPerson(ContactPersonPostDto contactPerson) {
          ContactPerson newContactPerson = contactPersonMapper.toEntity(contactPerson);
@@ -49,11 +50,6 @@ public class ContactPersonService {
         contactPersons.forEach(contactPerson -> contactPersonGetDtoList.add(contactPersonMapper.toDto(contactPerson)));
         return contactPersonGetDtoList;
     }
-
-
-
-
-
 
     public Iterable<ContactPerson> getContactPersonByName(String name) {
         return contactPersonRepository.getContactPersonByName(name);

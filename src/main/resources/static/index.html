@@ -12,10 +12,38 @@
 
 
 <h2>Zoek student op naam</h2>
-<label for="naam">Naam</label>
-<input type="text" id="naam">
-<button onclick="zoekStudentOpNaam()">Zoeken</button>
-<p id="zoekresultaat"></p>
+<label for="searchName">Naam</label>
+<input type="text" id="searchName">
+<button onclick="searchStudentByName()">Zoeken</button>
+
+<table>
+    <tr>
+        <th>studId</th>
+        <th>Naam</th>
+        <th>klas</th>
+        <th>school</th>
+        <th>contactpersoonId<th>
+        <th>courseId</th>
+    </tr>
+    <tbody id="SearchNameTable"></tbody>
+</table>
+
+<h2>Zoek student op Id</h2>
+<label for="searchId">id</label>
+<input type="text" id="searchId">
+<button onclick="searchStudentById()">Zoeken</button>
+
+<table>
+    <tr>
+        <th>studId</th>
+        <th>Naam</th>
+        <th>klas</th>
+        <th>school</th>
+        <th>contactpersoonId<th>
+        <th>courseId</th>
+    </tr>
+    <tbody id="SearchIdTable"></tbody>
+</table>
 
 <button onclick="buildTest()">maakt test alles</button>
 
@@ -25,6 +53,7 @@
 <a href="/contactpersoon/ContactPersonForm.html">Klik hier om een contact persoon toe te voegen</a>
 <a href="/course/CourseForm.html">Klik hier om een course toe te voegen</a>
 <a href="/school/SchoolForm.html">Klik hier om een school toe te voegen</a>
+
 
 
 </body>

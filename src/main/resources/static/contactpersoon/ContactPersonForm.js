@@ -27,6 +27,7 @@ async function newContactPerson() {
                 tableBody.innerHTML = "";
                 for (let i=0; i< data.length; i++){
                     let row = `<tr>
+                          <td>${data[i].id}</td>
                           <td>${data[i].name}</td>
                           <td>${data[i].phoneNumber}</td>
                     </tr>`;
